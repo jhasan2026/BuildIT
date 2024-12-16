@@ -1,0 +1,44 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+    <section class="text-gray-600 body-font flex justify-content-around items-center w-full">
+    <form action="{% url 'register' %}" method="POST">
+              {% csrf_token %}
+        <div class="w-full flex justify-between items-center min-h-screen">
+              <div class="container px-5 py-16 mx-auto flex flex-wrap items-center">
+                     <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                            <div class="relative flex-grow w-2/3">
+                                <label for="first_name" class="leading-7 text-sm text-gray-600">Identifies the general zoning classification of the sale.</label>
+                                <select id="first_name" name="first_name" required class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" aria-label="Default select example">
+                                  <option value="U">User</option>
+                                  <option value="B">Builder Company</option>
+                                </select>
+                          </div>
+                     </div>
+              </div>
+            <div class="lg:w-4/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+                <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
+
+                      <div class="relative mb-4">
+                        <label for="username" class="leading-7 text-sm text-gray-600">Full Name</label>
+                        <input type="text" id="username" name="username" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      </div>
+                      <div class="relative mb-4">
+                        <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      </div>
+                      <div class="relative mb-4">
+                        <label for="password" class="leading-7 text-sm text-gray-600">Password</label>
+                        <input type="password" id="password" name="password" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      </div>
+                      <div class="relative mb-4">
+                        <label for="confirm_password" class="leading-7 text-sm text-gray-600">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      </div>
+                      <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign Up</button>
+
+                      <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,4 @@
+
+.myClass:nth-child(even) {
+    background-color: #FF675E;
+}

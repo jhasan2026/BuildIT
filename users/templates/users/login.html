@@ -1,0 +1,42 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+      <script src="https://cdn.tailwindcss.com"></script>
+
+<div class="p-10">
+
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto flex justify-center items-center">
+    <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+      <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Login</h2>
+        <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="username" class="leading-7 text-sm text-gray-600">Username</label>
+                    <input type="text" id="username" name="username" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="leading-7 text-sm text-gray-600">Password</label>
+                    <input type="password" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required>
+                </div>
+                <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
+        </form>
+            {% if form.errors %}
+                        <div class="mb-4 text-red-500">
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                   {% endif %}
+
+            <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+{% endblock %}

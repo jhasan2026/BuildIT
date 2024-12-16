@@ -1,0 +1,88 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+
+    <section class="text-gray-600 body-font min-vh-100">
+        <div class="flex justify-center py-4">
+            <h1 class="font-bold text-4xl text-indigo-500">My Job Posts</h1>
+        </div>
+        <div class="flex justify-end pt-4">
+            <a type="button" href="{% url 'my-archived-job-list' %}"
+               class="w-6 h-12 text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 128 128"
+                     fill="currentColor">
+                    <path d="M 49 1 C 47.34 1 46 2.34 46 4 C 46 5.66 47.34 7 49 7 L 79 7 C 80.66 7 82 5.66 82 4 C 82 2.34 80.66 1 79 1 L 49 1 z M 24 15 C 16.83 15 11 20.83 11 28 C 11 35.17 16.83 41 24 41 L 101 41 L 101 104 C 101 113.37 93.37 121 84 121 L 44 121 C 34.63 121 27 113.37 27 104 L 27 52 C 27 50.34 25.66 49 24 49 C 22.34 49 21 50.34 21 52 L 21 104 C 21 116.68 31.32 127 44 127 L 84 127 C 96.68 127 107 116.68 107 104 L 107 40.640625 C 112.72 39.280625 117 34.14 117 28 C 117 20.83 111.17 15 104 15 L 24 15 z M 24 21 L 104 21 C 107.86 21 111 24.14 111 28 C 111 31.86 107.86 35 104 35 L 24 35 C 20.14 35 17 31.86 17 28 C 17 24.14 20.14 21 24 21 z M 50 55 C 48.34 55 47 56.34 47 58 L 47 104 C 47 105.66 48.34 107 50 107 C 51.66 107 53 105.66 53 104 L 53 58 C 53 56.34 51.66 55 50 55 z M 78 55 C 76.34 55 75 56.34 75 58 L 75 104 C 75 105.66 76.34 107 78 107 C 79.66 107 81 105.66 81 104 L 81 58 C 81 56.34 79.66 55 78 55 z"></path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="container px-5 py-24 mx-auto">
+
+
+            <div class="flex flex-wrap -mx-4 -my-8">
+                {% if jobs %}
+                    {% for job in jobs %}
+                        <a href="{% url 'job-details' job.id %}" class="py-8 px-4 lg:w-1/3 h-90">
+                            <div class="p-4 border border-slate-900 rounded-xl h-90">
+                                <div class="flex items-start border-slate-900 h-90">
+                                    <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
+                                        <span class="text-gray-500 pb-2 mb-2 border-b-2 border-gray-200">{{ job.date_posted|date:"M" }}</span>
+                                        <span class="font-medium text-lg text-gray-800 title-font leading-none">{{ job.date_posted.date.day }}</span>
+                                    </div>
+                                    <div class="flex-grow pl-6 h-90">
+                                        <h2 class="tracking-widest text-2xl title-font font-medium text-indigo-500 mb-1">{{ job.deal_payment }}
+                                            $</h2>
+                                        <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ job.job_title }}</h1>
+                                        <p class="leading-relaxed mb-5">
+                                            {{ job.job_description|slice:":120" }}
+                                            {% if job.job_description|length > 80 %}
+                                                ...{% endif %}
+                                        </p>
+                                        <div class="inline-flex items-center relative bottom-0">
+                                            <img alt="blog" src="{{ job.posted_by.profile.image.url }}"
+                                                 class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+                                            <span class="flex-grow flex flex-col pl-3">
+                                            <span class="title-font font-medium text-gray-900">{{ job.posted_by.username }}</span>
+                                          </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="min-vh-100">
+                        <h1 class="text-4xl font-bold">Your haven't created any job</h1>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <div class="flex justify-center gap-2">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'job-create' %}" class="text-gray-600 body-font">
+        {% csrf_token %}
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12 gap-4">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Create Job Post</h1>
+            </div>
+
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                <div class="flex items-center">
+                    <input checked id="is_available" type="checkbox" value="is_available" name="is_available"
+                           class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="is_available" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is available?</label>
+                </div>
+            </div>
+
+
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+                <div class="relative flex-grow w-full">
+                    <label for="job_title" class="leading-7 text-sm text-gray-600">Job Title</label>
+                    <input type="text" id="job_title" name="job_title"
+                           placeholder="ex: Need a plumber"
+                           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative flex-grow w-full">
+                    <label for="full-name" class="leading-7 text-sm text-gray-600">Deal Payment $</label>
+                    <input type="number" id="deal_payment" name="deal_payment"
+                           placeholder="ex: 1200"
+                           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+
+            </div>
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pt-4">
+                <div class="relative flex-grow w-full">
+                    <label for="working_day" class="leading-7 text-sm text-gray-600"> Working Days</label>
+                    <input type="number" id="working_day" name="working_day"
+                           placeholder="ex: 3"
+                           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative flex-grow w-full">
+                    <label for="working_hours" class="leading-7 text-sm text-gray-600">Working Hours</label>
+                    <input type="number" id="working_hours" name="working_hours"
+                           placeholder="ex: 8"
+                           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+            </div>
+
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pt-4">
+                <div class="relative flex-grow w-full">
+                    <label for="experience_year" class="leading-7 text-sm text-gray-600">Experience (year)</label>
+                    <input type="number" id="experience_year" name="experience_year"
+                           placeholder="ex: 3"
+                           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+            </div>
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pt-4">
+                <div class="relative flex-grow w-full">
+                    <label for="location" class="leading-7 text-sm text-gray-600">Location</label>
+                    <input type="text" id="location" name="location"
+                           placeholder="ex: 23 Fressor Town, London, England"
+                           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+            </div>
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pt-4">
+                <div class="relative flex-grow w-full">
+                    <label for="job_description" class="leading-7 text-sm text-gray-600">Job Description</label>
+                    <textarea id="job_description" name="job_description"
+                              rows="5"
+                              class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                </div>
+            </div>
+            <div class="flex justify-center pt-4">
+                <div class="inline-flex items-center mt-2">
+                    <button class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="submit">
+                        Create
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+{% endblock %}

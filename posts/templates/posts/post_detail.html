@@ -1,0 +1,698 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+    <section class="text-gray-600 body-font">
+        <div class="container py-6 mx-auto flex flex-wrap">
+            <div class="flex flex-wrap md:-m-2 -m-1">
+                <div class="flex flex-wrap w-1/2">
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                             src="{{ object.post_pic2.url }}">
+                    </div>
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                             src="{{ object.post_pic3.url }}">
+                    </div>
+                    <div class="md:p-2 p-1 w-full">
+                        <img alt="gallery" class="w-full h-full object-cover object-center block"
+                             src="{{ object.post_pic1.url }}">
+                    </div>
+                </div>
+                <div class="flex flex-wrap w-1/2">
+                    <div class="md:p-2 p-1 w-full">
+                        <img alt="gallery" class="w-full h-full object-cover object-center block"
+                             src="{{ object.post_pic4.url }}">
+                    </div>
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                             src="{{ object.post_pic5.url }}">
+                    </div>
+                    <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block"
+                             src="{{ object.post_pic6.url }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="flex justify-content-around items-center">
+    <span class="dark:bg-slate-800 gap-6 flex justify-center pt-20 fs-1">
+      <div
+              class="bg-gray-100 dark:bg-gray-700 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
+        <div class="flex items-center gap-4">
+          <img src="{{ object.author.profile.image.url }}"
+               class="w-44 h-44 group-hover:w-36 group-hover:h-36 h-32 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"/>
+          <div class="w-fit transition-all transform duration-500">
+            <h1 class="text-gray-600 dark:text-gray-200 font-bold">
+              {{ object.author }}
+            </h1>
+            <p class="text-gray-400">{{ object.author.email }}</p>
+            <a
+                    class="text-xs text-gray-500 dark:text-gray-200 group-hover:opacity-100 opacity-0 transform transition-all delay-300 duration-500">
+              mary@gmail.com
+            </a>
+          </div>
+        </div>
+
+          <div class="flex justify-center align-center h-12 py-8">
+                {% if user.is_authenticated and object.author != user %}
+                    <a class="flex align-center justify-center h-12 pt-2 px-6 m-2 text-lg text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+                       href="{% url 'start-chat' object.author.username %}">Chat with me</a>
+                {% endif %}
+          </div>
+
+
+    <div class="absolute group-hover:bottom-1 delay-300 -bottom-16 transition-all duration-500 bg-gray-600 dark:bg-gray-100 right-1 rounded-lg">
+      <div class="flex justify-evenly items-center gap-2 p-1 text-2xl text-white dark:text-gray-600">
+        <svg viewBox="0 0 1024 1024" fill="currentColor" height="1em" width="1em">
+          <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm215.3 337.7c.3 4.7.3 9.6.3 14.4 0 146.8-111.8 315.9-316.1 315.9-63 0-121.4-18.3-170.6-49.8 9 1 17.6 1.4 26.8 1.4 52 0 99.8-17.6 137.9-47.4-48.8-1-89.8-33-103.8-77 17.1 2.5 32.5 2.5 50.1-2a111 111 0 01-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 01-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 00229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35 25.1-4.7 49.1-14.1 70.5-26.7-8.3 25.7-25.7 47.4-48.8 61.1 22.4-2.4 44-8.6 64-17.3-15.1 22.2-34 41.9-55.7 57.6z"/>
+        </svg>
+        <svg fill="currentColor" viewBox="0 0 16 16" height="1em" width="1em">
+          <path
+                  d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+        </svg>
+        <svg viewBox="0 0 960 1000" fill="currentColor" height="1em" width="1em">
+          <path
+                  d="M480 20c133.333 0 246.667 46.667 340 140s140 206.667 140 340c0 132-46.667 245-140 339S613.333 980 480 980c-132 0-245-47-339-141S0 632 0 500c0-133.333 47-246.667 141-340S348 20 480 20M362 698V386h-96v312h96m-48-352c34.667 0 52-16 52-48s-17.333-48-52-48c-14.667 0-27 4.667-37 14s-15 20.667-15 34c0 32 17.333 48 52 48m404 352V514c0-44-10.333-77.667-31-101s-47.667-35-81-35c-44 0-76 16.667-96 50h-2l-6-42h-84c1.333 18.667 2 52 2 100v212h98V518c0-12 1.333-20 4-24 8-25.333 24.667-38 50-38 32 0 48 22.667 48 68v174h98"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</span>
+
+        <div class="p-4 md:w-1/3">
+            <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                <div class="flex items-center mb-3">
+                    <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-gray-900 text-5xl title-font font-bold">Price: ${{ object.price }}</h2>
+                </div>
+                <div class="flex-grow">
+                    <p class="leading-relaxed text-4xl">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+                        taxidermy. Gastropub indxgo juice poutine.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="bg-indigo-50 dark:bg-gray-900 p-3 sm:p-5">
+        <div class="mx-auto max-w-screen-3xl px-8 lg:px-12">
+            <!-- Start coding here -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-xl text-left bg-slate-800 text-white dark:text-gray-400">
+                    <thead class="text-2xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky z-10">
+                    <tr class=" sticky z-10">
+                        <th scope="col" class="px-4 py-3">Features</th>
+                        <th scope="col" class="px-4 py-3">Description</th>
+                        <th scope="col" class="px-4 py-3">Features</th>
+                        <th scope="col" class="px-4 py-3">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">General Zoning Classification</td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.MSZoning == "A" %}
+                            {{ "Agriculture" }}
+                        {% elif object.MSZoning == "C" %}
+                            {{ "Commercial" }}
+                        {% elif object.MSZoning == "FV" %}
+                            {{ "Floating Village Residential" }}
+                        {% elif object.MSZoning == "I" %}
+                            {{ "Industrial" }}
+                        {% elif object.MSZoning == "RH" %}
+                            {{ "Residential High Density" }}
+                        {% elif object.MSZoning == "RL" %}
+                            {{ "Residential Low Density" }}
+                        {% elif object.MSZoning == "RP" %}
+                            {{ "Residential Low Density Park" }}
+                        {% elif object.MSZoning == "RM" %}
+                            {{ "Residential Medium Density" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Linear
+                            feet of street
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.LotFrontage }}</td>
+                    </tr>
+
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Lot size</td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.LotArea }}</td>
+                        <td class="px-4 py-3 font-bold">Type
+                            of dwelling
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.BldgType == "1Fam" %}
+                            {{ "Single-family Detached" }}
+                        {% elif object.BldgType == "2FmCon" %}
+                            {{ "Two-family Conversion" }}
+                        {% elif object.BldgType == "Duplx" %}
+                            {{ "Duplex" }}
+                        {% elif object.BldgType == "TwnhsE" %}
+                            {{ "Townhouse End Unit" }}
+                        {% elif object.BldgType == "TwnhsI" %}
+                            {{ "Townhouse Inside Unit" }}
+                        {% else %}
+                            {{ "Unknown Zoning" }}
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold"> Rates the overall material and finish</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.OverallQual == "10" %}
+                            {{ "Very Excellent" }}
+                        {% elif object.OverallQual == "9" %}
+                            {{ "Excellent" }}
+                        {% elif object.OverallQual == "8" %}
+                            {{ "Very Good" }}
+                        {% elif object.OverallQual == "7" %}
+                            {{ "Good" }}
+                        {% elif object.OverallQual == "6" %}
+                            {{ "Above Average" }}
+                        {% elif object.OverallQual == "5" %}
+                            {{ "Average" }}
+                        {% elif object.OverallQual == "4" %}
+                            {{ "Below Average" }}
+                        {% elif object.OverallQual == "3" %}
+                            {{ "Fair" }}
+                        {% elif object.OverallQual == "2" %}
+                            {{ "Poor" }}
+                        {% elif object.OverallQual == "1" %}
+                            {{ "Very Poor" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold"> Rates the overall condition Overall Cond</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.OverallCond == "10" %}
+                            {{ "Very Excellent" }}
+                        {% elif object.OverallCond == "9" %}
+                            {{ "Excellent" }}
+                        {% elif object.OverallCond == "8" %}
+                            {{ "Very Good" }}
+                        {% elif object.OverallCond == "7" %}
+                            {{ "Good" }}
+                        {% elif object.OverallCond == "6" %}
+                            {{ "Above Average" }}
+                        {% elif object.OverallCond == "5" %}
+                            {{ "Average" }}
+                        {% elif object.OverallCond == "4" %}
+                            {{ "Below Average" }}
+                        {% elif object.OverallCond == "3" %}
+                            {{ "Fair" }}
+                        {% elif object.OverallCond == "2" %}
+                            {{ "Poor" }}
+                        {% elif object.OverallCond == "1" %}
+                            {{ "Very Poor" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                    </tr>
+
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Original construction year</td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.YearBuilt }}</td>
+                        <td class="px-4 py-3 font-bold">Type of roof</td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.RoofStyle == "Flat" %}
+                            {{ "Flat" }}
+                        {% elif object.RoofStyle == "Gable" %}
+                            {{ "Gable" }}
+                        {% elif object.RoofStyle == "Gambrel" %}
+                            {{ "Gambrel (Barn)" }}
+                        {% elif object.RoofStyle == "Hip" %}
+                            {{ "Hip" }}
+                        {% elif object.RoofStyle == "Mansard" %}
+                            {{ "Mansard" }}
+                        {% elif object.RoofStyle == "Shed" %}
+                            {{ "Shed" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Roof material</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.RoofMatl == "ClyTile" %}
+                            Clay or Tile
+                        {% elif object.RoofMatl == "CompShg" %}
+                            Standard (Composite) Shingle
+                        {% elif object.RoofMatl == "Membran" %}
+                            Membrane
+                        {% elif object.RoofMatl == "Metal" %}
+                            Metal
+                        {% elif object.RoofMatl == "Roll" %}
+                            Roll
+                        {% elif object.RoofMatl == "Tar&Grv" %}
+                            Gravel & Tar
+                        {% elif object.RoofMatl == "WdShake" %}
+                            Wood Shakes
+                        {% elif object.RoofMatl == "WdShngl" %}
+                            Wood Shingles
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Exterior covering on house</td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.Exterior1st == "AsbShng" %}
+                            {{ "Asbestos Shingles" }}
+                        {% elif object.Exterior1st == "AsphShn" %}
+                            {{ "Asphalt Shingles" }}
+                        {% elif object.Exterior1st == "BrkComm" %}
+                            {{ "Brick Common" }}
+                        {% elif object.Exterior1st == "BrkFace" %}
+                            {{ "Brick Face" }}
+                        {% elif object.Exterior1st == "CBlock" %}
+                            {{ "Cinder Block" }}
+                        {% elif object.Exterior1st == "CemntBd" %}
+                            {{ "Cement Board" }}
+                        {% elif object.Exterior1st == "HdBoard" %}
+                            {{ "Hard Board" }}
+                        {% elif object.Exterior1st == "ImStucc" %}
+                            {{ "Imitation Stucco" }}
+                        {% elif object.Exterior1st == "MetalSd" %}
+                            {{ "Metal Siding" }}
+                        {% elif object.Exterior1st == "Other" %}
+                            {{ "Other" }}
+                        {% elif object.Exterior1st == "Plywood" %}
+                            {{ "Plywood" }}
+                        {% elif object.Exterior1st == "PreCast" %}
+                            {{ "PreCast" }}
+                        {% elif object.Exterior1st == "Stone" %}
+                            {{ "Stone" }}
+                        {% elif object.Exterior1st == "Stucco" %}
+                            {{ "Stucco" }}
+                        {% elif object.Exterior1st == "VinylSd" %}
+                            {{ "Vinyl Siding" }}
+                        {% elif object.Exterior1st == "Wd Sdng" %}
+                            {{ "Wood Siding" }}
+                        {% elif object.Exterior1st == "WdShing" %}
+                            {{ "Wood Shingles" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Exterior covering on house (extra)</td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.Exterior2nd == "AsbShng" %}
+                            {{ "Asbestos Shingles" }}
+                        {% elif object.Exterior2nd == "AsphShn" %}
+                            {{ "Asphalt Shingles" }}
+                        {% elif object.Exterior2nd == "BrkComm" %}
+                            {{ "Brick Common" }}
+                        {% elif object.Exterior2nd == "BrkFace" %}
+                            {{ "Brick Face" }}
+                        {% elif object.Exterior2nd == "CBlock" %}
+                            {{ "Cinder Block" }}
+                        {% elif object.Exterior2nd == "CemntBd" %}
+                            {{ "Cement Board" }}
+                        {% elif object.Exterior2nd == "HdBoard" %}
+                            {{ "Hard Board" }}
+                        {% elif object.Exterior2nd == "ImStucc" %}
+                            {{ "Imitation Stucco" }}
+                        {% elif object.Exterior2nd == "MetalSd" %}
+                            {{ "Metal Siding" }}
+                        {% elif object.Exterior1st == "Other" %}
+                            {{ "Other" }}
+                        {% elif object.Exterior2nd == "Plywood" %}
+                            {{ "Plywood" }}
+                        {% elif object.Exterior2nd == "PreCast" %}
+                            {{ "PreCast" }}
+                        {% elif object.Exterior2nd == "Stone" %}
+                            {{ "Stone" }}
+                        {% elif object.Exterior2nd == "Stucco" %}
+                            {{ "Stucco" }}
+                        {% elif object.Exterior2nd == "VinylSd" %}
+                            {{ "Vinyl Siding" }}
+                        {% elif object.Exterior2nd == "Wd Sdng" %}
+                            {{ "Wood Siding" }}
+                        {% elif object.Exterior2nd == "WdShing" %}
+                            {{ "Wood Shingles" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Type of foundation</td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.Foundation == "BrkTil" %}
+                            Brick & Tile
+                        {% elif object.Foundation == "CBlock" %}
+                            Cinder Block
+                        {% elif object.Foundation == "PConc" %}
+                            Poured Concrete
+                        {% elif object.Foundation == "Slab" %}
+                            Slab
+                        {% elif object.Foundation == "Stone" %}
+                            Stone
+                        {% elif object.Foundation == "Wood" %}
+                            Wood
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Evaluates the quality of the material on the exterior</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.ExterQual == "Ex" %}
+                            {{ "Excellent" }}
+                        {% elif object.ExterQual == "Gd" %}
+                            {{ "Good" }}
+                        {% elif object.ExterQual == "TA" %}
+                            {{ "Average/Typical" }}
+                        {% elif object.ExterQual == "Fa" %}
+                            {{ "Fair" }}
+                        {% elif object.ExterQual == "Po" %}
+                            {{ "Poor" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Evaluates
+                            the present condition of the material on the exterior
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.ExterCond == "Ex" %}
+                            {{ "Excellent" }}
+                        {% elif object.ExterCond == "Gd" %}
+                            {{ "Good" }}
+                        {% elif object.ExterCond == "TA" %}
+                            {{ "Average/Typical" }}
+                        {% elif object.ExterCond == "Fa" %}
+                            {{ "Fair" }}
+                        {% elif object.ExterCond == "Po" %}
+                            {{ "Poor" }}
+                        {% else %}
+                            {{ "Unknown" }}
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Evaluates the height of the basement</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.BsmtQual == "Ex" %}
+                            Excellent (100+ inches)
+                        {% elif object.BsmtQual == "Gd" %}
+                            Good (90-99 inches)
+                        {% elif object.BsmtQual == "TA" %}
+                            Typical (80-89 inches)
+                        {% elif object.BsmtQual == "Fa" %}
+                            Fair (70-79 inches)
+                        {% elif object.BsmtQual == "Po" %}
+                            Poor (<70 inches)
+                        {% elif object.BsmtQual == "NA" %}
+                            No Basement
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Evaluates the general condition of the basement</td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.BsmtCond == "Ex" %}
+                            Excellent
+                        {% elif object.BsmtCond == "Gd" %}
+                            Good
+                        {% elif object.BsmtCond == "TA" %}
+                            Typical - slight dampness allowed
+                        {% elif object.BsmtCond == "Fa" %}
+                            Fair - dampness or some cracking or settling
+                        {% elif object.BsmtCond == "Po" %}
+                            Poor - Severe cracking, settling, or wetness
+                        {% elif object.BsmtCond == "NA" %}
+                            No Basement
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Total square feet of basement area</td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.TotalBsmtSF }}</td>
+                        <td class="px-4 py-3 font-bold">Type
+                            of sale
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.SaleType == "WD" %}
+                            Warranty Deed - Conventional
+                        {% elif object.SaleType == "CWD" %}
+                            Warranty Deed - Cash
+                        {% elif object.SaleType == "VWD" %}
+                            Warranty Deed - VA Loan
+                        {% elif object.SaleType == "New" %}
+                            Home just constructed and sold
+                        {% elif object.SaleType == "COD" %}
+                            Court Officer Deed/Estate
+                        {% elif object.SaleType == "Con" %}
+                            Contract 15% Down payment regular terms
+                        {% elif object.SaleType == "ConLw" %}
+                            Contract Low Down payment and low interest
+                        {% elif object.SaleType == "ConLI" %}
+                            Contract Low Interest
+                        {% elif object.SaleType == "ConLD" %}
+                            Contract Low Down
+                        {% elif object.SaleType == "Oth" %}
+                            Other
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+
+
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Central
+                            air conditioning
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.CentralAir == "Y" %}
+                            Yes
+                        {% elif object.CentralAir == "N" %}
+                            No
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">First
+                            Floor square feet
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600"> {{ object.FirstFlrSF }}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Second
+                            floor square feet
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.SecondFlrSF }}</td>
+                        <td class="px-4 py-3 font-bold">Above grade (ground) living area square feet</td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.GrLivArea }}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Total
+                            rooms above grade (does not include bathrooms
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.TotRmsAbvGrd }}</td>
+                        <td class="px-4 py-3 font-bold"> Condition of sale</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.SaleCondition == "Normal" %}
+                            Normal Sale
+                        {% elif object.SaleCondition == "Abnorml" %}
+                            Abnormal Sale - trade, foreclosure, short sale
+                        {% elif object.SaleCondition == "AdjLand" %}
+                            Adjoining Land Purchase
+                        {% elif object.SaleCondition == "Alloca" %}
+                            Allocation - two linked properties with separate deeds
+                        {% elif object.SaleCondition == "Family" %}
+                            Sale between family members
+                        {% elif object.SaleCondition == "Partial" %}
+                            Home was not completed when last assessed (associated with New Homes)
+                        {% else %}
+                            Unknown Sale Condition
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Garage
+                            location
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.KitchenQual == "Ex" %}
+                            Excellent
+                        {% elif object.KitchenQual == "Gd" %}
+                            Good
+                        {% elif object.KitchenQual == "TA" %}
+                            Typical/Average
+                        {% elif object.KitchenQual == "Fa" %}
+                            Fair
+                        {% elif object.KitchenQual == "Po" %}
+                            Poor
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Kitchen
+                            quality
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.KitchenQual == "Ex" %}
+                            Excellent
+                        {% elif object.KitchenQual == "Gd" %}
+                            Good
+                        {% elif object.KitchenQual == "TA" %}
+                            Typical/Average
+                        {% elif object.KitchenQual == "Fa" %}
+                            Fair
+                        {% elif object.KitchenQual == "Po" %}
+                            Poor
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Size of garage in car capacity</td>
+                        <td class="px-4 py-3 bg-slate-600"> {{ object.GarageCars }}</td>
+                        <td class="px-4 py-3 font-bold">Size
+                            of garage in square feet
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.GarageArea }}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Garage quality</td>
+                        <td class="px-4 py-3 bg-slate-600"> {% if object.GarageQual == "Ex" %}
+                            Excellent
+                        {% elif object.GarageQual == "Gd" %}
+                            Good
+                        {% elif object.GarageQual == "TA" %}
+                            Typical/Average
+                        {% elif object.GarageQual == "Fa" %}
+                            Fair
+                        {% elif object.GarageQual == "Po" %}
+                            Poor
+                        {% elif object.GarageQual == "NA" %}
+                            No Garage
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                        <td class="px-4 py-3 font-bold">Garage
+                            condition
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{% if object.GarageCond == "Ex" %}
+                            Excellent
+                        {% elif object.GarageCond == "Gd" %}
+                            Good
+                        {% elif object.GarageCond == "TA" %}
+                            Typical/Average
+                        {% elif object.GarageCond == "Fa" %}
+                            Fair
+                        {% elif object.GarageCond == "Po" %}
+                            Poor
+                        {% elif object.GarageCond == "NA" %}
+                            No Garage
+                        {% else %}
+                            Unknown
+                        {% endif %}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Pool area in square feet</td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.PoolArea }}</td>
+                        <td class="px-4 py-3 font-bold">Value
+                            of miscellaneous feature
+                        </td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.LotFrontage }}</td>
+                    </tr>
+
+                    <tr class="border-b dark:border-gray-700">
+                        <td class="px-4 py-3 font-bold">Misc Value</td>
+                        <td class="px-4 py-3 bg-slate-600">{{ object.MiscVal }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+    <div>
+        {% if object.author == user %}
+            <div class="py-2">
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+            </div>
+        {% endif %}
+
+        {% if object.use_for == 0 and user.first_name == 'U' %}
+            <div class=" flex justify-evenly">
+                <div class="flex justify-center p-4">
+                    <div class="relative inline-flex  group">
+                        <div
+                                class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+                        </div>
+                        <a href="{% url 'post-pay' object.id %}" title="Get quote now"
+                           class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                           role="button">Book Now
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-span-12 md:col-span-4 max-lg:mt-8 md:pl-8 w-80 pt-8">
+                    <div class="flex items-center flex-col justify-center w-full h-full ">
+                        <a href="{% url 'add_review' post.id %}"
+                           class="rounded-full px-6 py-4 bg-indigo-600 font-semibold text-lg text-white whitespace-nowrap mb-6 w-full text-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
+                            Review
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        {% elif object.use_for == 1 and user.first_name == 'U' %}
+            <div class="flex justify-evenly py-8">
+            <div class="flex justify-center p-4">
+                <div class="relative inline-flex  group">
+                    <div
+                            class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+                    </div>
+                    <a href="{% url 'post-pay' object.id %}" title="Get quote now"
+                       class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                       role="button">Book Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-4 max-lg:mt-8 md:pl-8 w-80 pt-8">
+                <div class="flex items-center flex-col justify-center w-full h-full ">
+                    <a href="{% url 'add_review' post.id %}"
+                       class="rounded-full px-6 py-4 bg-indigo-600 font-semibold text-lg text-white whitespace-nowrap mb-6 w-full text-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
+                        Review
+                    </a>
+                </div>
+            </div>
+            </div>
+
+
+        {% elif object.use_for == 2 and user.first_name == 'U' %}
+            <div class="flex justify-evenly py-8">
+            <div class="flex justify-center p-4">
+                <div class="relative inline-flex  group">
+                    <div
+                            class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+                    </div>
+                    <a href="{% url 'mortgage-card' object.id %}" title="Get quote now"
+                       class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                       role="button">Mortgage Calculate
+                    </a>
+                </div>
+            </div>
+            <div class="col-span-12 md:col-span-4 max-lg:mt-8 md:pl-8 w-80 pt-8">
+                <div class="flex items-center flex-col justify-center w-full h-full ">
+                    <a href="{% url 'add_review' post.id %}"
+                       class="rounded-full px-6 py-4 bg-indigo-600 font-semibold text-lg text-white whitespace-nowrap mb-6 w-full text-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
+                        Review
+                    </a>
+                </div>
+            </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock content %}

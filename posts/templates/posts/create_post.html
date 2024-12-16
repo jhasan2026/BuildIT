@@ -1,0 +1,836 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Create new post</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn
+                    asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them
+                    man bun deep.</p>
+                <br>
+                <b>{% if output %}
+                    <h1>Insurance: {{ output }}</h1>
+                {% endif %}</b>
+            </div>
+
+            <form action="{% url 'post-create' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="use_for" class="leading-7 text-lg font-bold text-gray-600">Post </label>
+                        <select id="use_for" name="use_for" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            <option value="0">For Sell</option>
+                            <option value="1">For Rent</option>
+                            <option value="2">For Mortgage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="price" class="leading-7 text-lg font-bold text-gray-600">Price</label>
+                        <input id="price" name="price" type="number" value="10000"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                               required>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="address" class="leading-7 text-lg font-bold text-gray-600">Address</label>
+                        <input id="address" name="address" type="text"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                               required>
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="MSZoning" class="leading-7 text-lg font-bold text-gray-600">Identifies the general
+                            zoning classification of the sale.</label>
+                        <select id="MSZoning" name="MSZoning" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="A">Agriculture</option>
+                            <option value="C">Commercial</option>
+                            <option value="FV">Floating Village Residential</option>
+                            <option value="I">Industrial</option>
+                            <option value="RH">Residential High Density</option>
+                            <option value="RL">Residential Low Density</option>
+                            <option value="RP">Residential Low Density Park</option>
+                            <option value="RM">Residential Medium Density</option>
+                        </select>
+                    </div>
+
+                    <div class="relative flex-grow w-full">
+                        <label for="LotFrontage" class="leading-7 text-lg font-bold text-gray-600">Linear feet of street
+                            connected to property</label>
+                        <input id="LotFrontage" name="LotFrontage" type="number" value="75"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="LotArea" class="leading-7 text-lg font-bold text-gray-600">Lot size in square
+                            feet</label>
+                        <input id="LotArea" name="LotArea" type="number" value="10000"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="BldgType" class="leading-7 text-lg font-bold text-gray-600">Type of dwelling</label>
+                        <select id="BldgType" name="BldgType" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="1Fam">Single-family Detached</option>
+                            <option value="2FmCon">Two-family Conversion</option>
+                            <option value="Duplx">Duplex</option>
+                            <option value="TwnhsE">Townhouse End Unit</option>
+                            <option value="TwnhsI">Townhouse Inside Unit</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+
+                    <div class="relative flex-grow w-full">
+                        <label for="OverallQual" class="leading-7 text-lg font-bold text-gray-600">Rates the overall
+                            material and finish of the house</label>
+                        <select id="OverallQual" name="OverallQual" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="10">Very Excellent</option>
+                            <option value="9">Excellent</option>
+                            <option value="8">Very Good</option>
+                            <option value="7">Good</option>
+                            <option value="6">Above Average</option>
+                            <option value="5">Average</option>
+                            <option value="4">Below Average</option>
+                            <option value="3">Fair</option>
+                            <option value="2">Poor</option>
+                            <option value="1">Very Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="relative flex-grow w-full">
+                        <label for="CentralAir" class="leading-7 text-lg font-bold text-gray-600">Central air
+                            conditioning </label>
+                        <div class="flex items-center mb-2">
+                            <input id="Y" type="radio" value="Y" name="CentralAir"
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="Y" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input checked id="N" type="radio" value="N" name="CentralAir"
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="N" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="OverallCond" class="leading-7 text-lg font-bold text-gray-600">Rates the overall
+                            condition of the house</label>
+                        <select id="OverallCond" name="OverallCond" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="10">Very Excellent</option>
+                            <option value="9">Excellent</option>
+                            <option value="8">Very Good</option>
+                            <option value="7">Good</option>
+                            <option value="6">Above Average</option>
+                            <option value="5">Average</option>
+                            <option value="4">Below Average</option>
+                            <option value="3">Fair</option>
+                            <option value="2">Poor</option>
+                            <option value="1">Very Poor</option>
+                        </select>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="YearBuilt" class="leading-7 text-lg font-bold text-gray-600">Original construction
+                            year </label>
+                        <input type="number" name="YearBuilt" id="YearBuilt" min="1600" max="2024" value="2020"
+                               step="10" name="YearBuilt" required
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="Foundation" class="leading-7 text-lg font-bold text-gray-600">Type of
+                            foundation</label>
+                        <select id="Foundation" name="Foundation" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="BrkTil">Brick & Tile</option>
+                            <option value="CBlock">Cinder Block</option>
+                            <option value="PConc">Poured Contrete</option>
+                            <option value="Slab">Slab</option>
+                            <option value="Stone">Stone</option>
+                            <option value="Wood">Wood</option>
+                        </select>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="BsmtQual" class="leading-7 text-lg font-bold text-gray-600">Evaluates the height of
+                            the basement</label>
+                        <select id="BsmtQual" name="BsmtQual" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="Ex">Excellent (100+ inches)</option>
+                            <option value="Gd">Good (90-99 inches)</option>
+                            <option value="TA">Typical (80-89 inches)</option>
+                            <option value="Fa">Fair (70-79 inches)</option>
+                            <option value="Po">Poor (<70 inches</option>
+                            <option value="NA">No Basement</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="BsmtCond" class="leading-7 text-lg font-bold text-gray-600">Evaluates the general
+                            condition of the basement</label>
+                        <select id="BsmtCond" name="BsmtCond" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="Ex">Excellent</option>
+                            <option value="Gd">Good</option>
+                            <option value="TA">Typical - slight dampness allowed</option>
+                            <option value="Fa">Fair - dampness or some cracking or settling</option>
+                            <option value="Po">Poor - Severe cracking, settling, or wetness</option>
+                            <option value="NA">No Basement</option>
+                        </select>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="TotalBsmtSF" class="leading-7 text-lg font-bold text-gray-600">Total square feet of
+                            basement area</label>
+                        <input id="TotalBsmtSF" name="TotalBsmtSF" type="number" value="1070"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="FirstFlrSF" class="leading-7 text-lg font-bold text-gray-600">First Floor square
+                            feet</label>
+                        <input id="FirstFlrSF" name="FirstFlrSF" type="number" value="1170"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+
+                    <div class="relative flex-grow w-full">
+                        <label for="SecondFlrSF" class="leading-7 text-lg font-bold text-gray-600">Second floor square
+                            feet</label>
+                        <input id="SecondFlrSF" name="SecondFlrSF" type="number" value="340"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+
+                </div>
+
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="GrLivArea" class="leading-7 text-lg font-bold text-gray-600">Above grade (ground)
+                            living area square feet</label>
+                        <input id="GrLivArea" name="GrLivArea" type="number" value="1500"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="KitchenQual" class="leading-7 text-lg font-bold text-gray-600">Kitchen
+                            quality</label>
+                        <select id="KitchenQual" name="KitchenQual" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="Ex">Excellent</option>
+                            <option value="Gd">Good</option>
+                            <option value="TA">Typical/Average</option>
+                            <option value="Fa">Fair</option>
+                            <option value="Po">Poor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="TotRmsAbvGrd" class="leading-7 text-lg font-bold text-gray-600">Total rooms above
+                            grade (does not include bathrooms)</label>
+                        <input id="TotRmsAbvGrd" name="TotRmsAbvGrd" type="number" value="6"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="GarageType" class="leading-7 text-lg font-bold text-gray-600">Garage
+                            location</label>
+                        <select id="GarageType" name="GarageType" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#              <option selected>Open this select menu</option>#}
+                            <option value="2Types">More than one type of garage</option>
+                            <option value="Attchd">Attached to home</option>
+                            <option value="Basment">Basement Garage</option>
+                            <option value="BuiltIn">Built-In (Garage part of house - typically has room above garage)
+                            </option>
+                            <option value="CarPort">Car Port</option>
+                            <option value="Detchd">Detached from home</option>
+                            <option value="NA">No Garage</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="GarageArea" class="leading-7 text-lg font-bold text-gray-600">Size of garage in
+                            square feet</label>
+                        <input id="GarageArea" name="GarageArea" type="number" value="475"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="GarageQual" class="leading-7 text-lg font-bold text-gray-600">Garage quality</label>
+                        <select id="GarageQual" name="GarageQual" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="Ex">Excellent</option>
+                            <option value="Gd">Good</option>
+                            <option value="TA">Typical/Average</option>
+                            <option value="Fa">Fair</option>
+                            <option value="Po">Poor</option>
+                            <option value="NA">No Garage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="GarageCond" class="leading-7 text-lg font-bold text-gray-600">Garage
+                            condition</label>
+                        <select id="GarageCond" name="GarageCond" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="Ex">Excellent</option>
+                            <option value="Gd">Good</option>
+                            <option value="TA">Typical/Average</option>
+                            <option value="Fa">Fair</option>
+                            <option value="Po">Poor</option>
+                            <option value="NA">No Garage</option>
+                        </select>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="PoolArea" class="leading-7 text-lg font-bold text-gray-600">Pool area in square
+                            feet</label>
+                        <input id="PoolArea" name="PoolArea" type="number" value="0"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+
+                </div>
+
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="MiscVal" class="leading-7 text-lg font-bold text-gray-600">$Value of miscellaneous
+                            feature</label>
+                        <input id="MiscVal" name="MiscVal" type="number" value="50"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+
+                    <div class="relative flex-grow w-full">
+                        <label for="SaleType" class="leading-7 text-lg font-bold text-gray-600">Type of sale</label>
+                        <select id="SaleType" name="SaleType" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="WD">Warranty Deed - Conventional</option>
+                            <option value="CWD">Warranty Deed - Cash</option>
+                            <option value="VWD">Warranty Deed - VA Loan</option>
+                            <option value="New">Home just constructed and sold</option>
+                            <option value="COD">Court Officer Deed/Estate</option>
+                            <option value="Con">Contract 15% Down payment regular terms</option>
+                            <option value="ConLw">Contract Low Down payment and low interest</option>
+                            <option value="ConLI">Contract Low Interest</option>
+                            <option value="ConLD">Contract Low Down</option>
+                            <option value="Oth">Other</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="SaleCondition" class="leading-7 text-lg font-bold text-gray-600">Condition of
+                            sale</label>
+                        <select id="SaleCondition" name="SaleCondition" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            <option value="Normal">Normal Sale</option>
+                            <option value="Abnorml">Abnormal Sale - trade, foreclosure, short sale</option>
+                            <option value="AdjLand">Adjoining Land Purchase</option>
+                            <option value="Alloca">Allocation - two linked properties with separate deeds</option>
+                            <option value="Family">Sale between family members</option>
+                            <option value="Partial">Home was not completed when last assessed (associated with New
+                                Homes)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="relative flex-grow w-full">
+                        <label for="RoofStyle" class="leading-7 text-lg font-bold text-gray-600">Type of roof</label>
+                        <select id="RoofStyle" name="RoofStyle" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="Flat">Flat</option>
+                            <option value="Gable">Gable</option>
+                            <option value="Gambrel">Gambrel (Barn)</option>
+                            <option value="Hip">Hip</option>
+                            <option value="Mansard">Mansard</option>
+                            <option value="Shed">Shed</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="RoofMatl" class="leading-7 text-lg font-bold text-gray-600">Roof material</label>
+                        <select id="RoofMatl" name="RoofMatl" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="ClyTile">Clay or Tile</option>
+                            <option value="CompShg">Standard (Composite) Shingle</option>
+                            <option value="Membran">Membrane</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Roll">Roll</option>
+                            <option value="Tar&Grv">Gravel & Tar</option>
+                            <option value="WdShake">Wood Shakes</option>
+                            <option value="WdShngl">Wood Shingles</option>
+                        </select>
+                    </div>
+
+                    <div class="relative flex-grow w-full">
+                        <label for="Exterior1st" class="leading-7 text-lg font-bold text-gray-600">Exterior covering on
+                            house</label>
+                        <select id="Exterior1st" name="Exterior1st" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            {#                  <option selected>Open this select menu</option>#}
+                            <option value="AsbShng">Asbestos Shingles</option>
+                            <option value="AsphShn">Asphalt Shingles</option>
+                            <option value="BrkComm">Brick Common</option>
+                            <option value="BrkFace">Brick Face</option>
+                            <option value="CBlock">Cinder Block</option>
+                            <option value="CemntBd">Cement Board</option>
+                            <option value="HdBoard">Hard Board</option>
+                            <option value="ImStucc">Imitation Stucco</option>
+                            <option value="MetalSd">Metal Siding</option>
+                            <option value="Other">Other</option>
+                            <option value="Plywood">Plywood</option>
+                            <option value="PreCast">PreCast</option>
+                            <option value="Stone">Stone</option>
+                            <option value="Stucco">Stucco</option>
+                            <option value="VinylSd">Vinyl Siding</option>
+                            <option value="Wd Sdng">Wood Siding</option>
+                            <option value="WdShing">Wood Shingles</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="Exterior2nd" class="leading-7 text-lg font-bold text-gray-600">Exterior covering on
+                            house (if more than one material)</label>
+                        <select id="Exterior2nd" name="Exterior2nd" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="AsbShng">Asbestos Shingles</option>
+                            <option value="AsphShn">Asphalt Shingles</option>
+                            <option value="BrkComm">Brick Common</option>
+                            <option value="BrkFace">Brick Face</option>
+                            <option value="CBlock">Cinder Block</option>
+                            <option value="CemntBd">Cement Board</option>
+                            <option value="HdBoard">Hard Board</option>
+                            <option value="ImStucc">Imitation Stucco</option>
+                            <option value="MetalSd">Metal Siding</option>
+                            <option value="Other">Other</option>
+                            <option value="Plywood">Plywood</option>
+                            <option value="PreCast">PreCast</option>
+                            <option value="Stone">Stone</option>
+                            <option value="Stucco">Stucco</option>
+                            <option value="VinylSd">Vinyl Siding</option>
+                            <option value="Wd Sdng">Wood Siding</option>
+                            <option value="WdShing">Wood Shingles</option>
+                        </select>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="ExterQual" class="leading-7 text-lg font-bold text-gray-600">Evaluates the quality
+                            of the material on the exterior</label>
+                        <select id="ExterQual" name="ExterQual" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="Ex">Excellent</option>
+                            <option value="Gd">Good</option>
+                            <option value="TA">Average/Typical</option>
+                            <option value="Fa">Fair</option>
+                            <option value="Po">Poor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="ExterCond" class="leading-7 text-lg font-bold text-gray-600">Evaluates the present
+                            condition of the material on the exterior</label>
+                        <select id="ExterCond" name="ExterCond" required
+                                class="form-select w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="Ex">Excellent</option>
+                            <option value="Gd">Good</option>
+                            <option value="TA">Average/Typical</option>
+                            <option value="Fa">Fair</option>
+                            <option value="Po">Poor</option>
+                        </select>
+                    </div>
+                    <div class="relative flex-grow w-full">
+                        <label for="GarageCars" class="leading-7 text-lg font-bold text-gray-600">Size of garage in car
+                            capacity</label>
+                        <input id="GarageCars" name="GarageCars" type="number" value="1"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+                <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end pb-4">
+                    <div class="relative flex-grow w-full">
+                        <label for="map" class="leading-7 text-lg font-bold text-gray-600">Map</label>
+                        <input id="map" name="map" type="text"
+                               class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+
+                <div class="container mx-auto grid grid-cols-3 gap-2 p-4">
+
+                    <section class="container w-full mx-auto items-center py-32">
+                        <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
+                            <div class="px-4 py-6">
+                                <div id="image-preview1"
+                                     class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <input id="post_pic1" name="post_pic1" type="file" class="hidden" accept="image/*"/>
+                                    <label for="post_pic1" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor"
+                                             class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                        </svg>
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
+                                            picture</h5>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be
+                                            less than <b class="text-gray-600">2mb</b></p>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                                class="text-gray-600">JPG, PNG, or GIF</b> format.</p>
+                                        <span id="pic1_filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full">
+                                        <label class="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+                                            <span class="text-center ml-2">Upload</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="container w-full mx-auto items-center py-32">
+                        <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
+                            <div class="px-4 py-6">
+                                <div id="image-preview2"
+                                     class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <input id="post_pic2" name="post_pic2" type="file" class="hidden" accept="image/*"/>
+                                    <label for="post_pic2" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5"
+                                             stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                        </svg>
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
+                                            picture</h5>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be
+                                            less than
+                                            <b class="text-gray-600">2mb</b></p>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                                class="text-gray-600">JPG, PNG, or GIF</b> format.</p>
+                                        <span id="pic2_filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full">
+                                        <label class="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+                                            <span class="text-center ml-2">Upload</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- Third Section -->
+                    <section class="container w-full mx-auto items-center py-32">
+                        <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
+                            <div class="px-4 py-6">
+                                <div id="image-preview3"
+                                     class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <input id="post_pic3" name="post_pic3" type="file" class="hidden" accept="image/*"/>
+                                    <label for="post_pic3" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5"
+                                             stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                        </svg>
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
+                                            picture</h5>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be
+                                            less than
+                                            <b class="text-gray-600">2mb</b></p>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                                class="text-gray-600">JPG, PNG, or GIF</b> format.</p>
+                                        <span id="pic3_filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full">
+                                        <label class="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+                                            <span class="text-center ml-2">Upload</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="container w-full mx-auto items-center py-32">
+                        <!-- Fourth Section -->
+                        <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
+                            <div class="px-4 py-6">
+                                <div id="image-preview4"
+                                     class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <input id="post_pic4" name="post_pic4" type="file" class="hidden" accept="image/*"/>
+                                    <label for="post_pic4" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5"
+                                             stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                        </svg>
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
+                                            picture</h5>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be
+                                            less than
+                                            <b class="text-gray-600">2mb</b></p>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                                class="text-gray-600">JPG, PNG, or GIF</b> format.</p>
+                                        <span id="pic4_filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full">
+                                        <label class="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+                                            <span class="text-center ml-2">Upload</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Fifth Section -->
+                    <section class="container w-full mx-auto items-center py-32">
+                        <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
+                            <div class="px-4 py-6">
+                                <div id="image-preview5"
+                                     class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <input id="post_pic5" name="post_pic5" type="file" class="hidden" accept="image/*"/>
+                                    <label for="post_pic5" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5"
+                                             stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                        </svg>
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
+                                            picture</h5>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be
+                                            less than
+                                            <b class="text-gray-600">2mb</b></p>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                                class="text-gray-600">JPG, PNG, or GIF</b> format.</p>
+                                        <span id="pic5_filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full">
+                                        <label class="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+                                            <span class="text-center ml-2">Upload</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sixth Section -->
+                    <section class="container w-full mx-auto items-center py-32">
+                        <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
+                            <div class="px-4 py-6">
+                                <div id="image-preview6"
+                                     class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <input id="post_pic6" name="post_pic6" type="file" class="hidden" accept="image/*"/>
+                                    <label for="post_pic6" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5"
+                                             stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                        </svg>
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
+                                            picture</h5>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be
+                                            less than
+                                            <b class="text-gray-600">2mb</b></p>
+                                        <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                                class="text-gray-600">JPG, PNG, or GIF</b> format.</p>
+                                        <span id="pic6_filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full">
+                                        <label class="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+                                            <span class="text-center ml-2">Upload</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    {#                <label for="uploadFile1"#}
+                    {#                       class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">#}
+                    {#                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">#}
+                    {#                        <path#}
+                    {#                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                        <path#}
+                    {#                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                    </svg>#}
+                    {#                    Image 1#}
+                    {#                    <input type="file" id='post_pic1' name="post_pic1" class="hidden"/>#}
+                    {#                </label>#}
+                    {#                <label for="uploadFile1"#}
+                    {#                       class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">#}
+                    {#                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">#}
+                    {#                        <path#}
+                    {#                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                        <path#}
+                    {#                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                    </svg>#}
+                    {#                    Image 2#}
+                    {#                    <input type="file" id='post_pic2' name="post_pic2" class="hidden"/>#}
+                    {#                </label>#}
+                    {##}
+                    {#                <label for="uploadFile1"#}
+                    {#                       class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">#}
+                    {#                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">#}
+                    {#                        <path#}
+                    {#                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                        <path#}
+                    {#                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                    </svg>#}
+                    {#                    Image 3#}
+                    {#                    <input type="file" id='post_pic3' name="post_pic3" class="hidden"/>#}
+                    {#                </label>#}
+                    {##}
+                    {#                <label for="uploadFile1"#}
+                    {#                       class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">#}
+                    {#                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">#}
+                    {#                        <path#}
+                    {#                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                        <path#}
+                    {#                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                    </svg>#}
+                    {#                    Image 4#}
+                    {#                    <input type="file" id='post_pic4' name="post_pic4" class="hidden"/>#}
+                    {#                </label>#}
+                    {##}
+                    {#                <label for="uploadFile1"#}
+                    {#                       class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">#}
+                    {#                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">#}
+                    {#                        <path#}
+                    {#                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                        <path#}
+                    {#                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                    </svg>#}
+                    {#                    Image 5#}
+                    {#                    <input type="file" id='post_pic5' name="post_pic5" class="hidden"/>#}
+                    {#                </label>#}
+                    {##}
+                    {#                <label for="uploadFile1"#}
+                    {#                       class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">#}
+                    {#                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">#}
+                    {#                        <path#}
+                    {#                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                        <path#}
+                    {#                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"#}
+                    {#                                data-original="#000000"/>#}
+                    {#                    </svg>#}
+                    {#                    Image 6#}
+                    {#                    <input type="file" id='post_pic6' name="post_pic6" class="hidden"/>#}
+                    {#                </label>#}
+
+                </div>
+
+
+                <div class="text-center my-4">
+                    <button type="submit"
+                            class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                        Button
+                    </button>
+                </div>
+            </form>
+            <script src="../../static/scrollbar.js"></script>
+            <script src="../../static/fileUpload.js"></script>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,400 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <section class="py-24 relative">
+        <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+            <div class="w-full">
+                <h2 class="font-manrope font-bold text-4xl text-black mb-8 text-center">Our customer reviews
+                </h2>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-11 pb-11 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
+                    <div class="box flex flex-col gap-y-4 w-full ">
+                        <div class="flex items-center w-full">
+                            <p class="font-medium text-lg text-black mr-0.5">5</p>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12042_8589)">
+                                    <path
+                                            d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_12042_8589">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="h-2 w-full sm:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
+                                <span class="h-full w-[30%] rounded-3xl bg-amber-400 flex"></span>
+                            </p>
+                            <p class="font-medium text-lg  text-black mr-0.5">
+                                {% if five %}
+                                    {{ five }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="flex items-center w-full">
+                            <p class="font-medium text-lg text-black mr-0.5">4</p>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12042_8589)">
+                                    <path
+                                            d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_12042_8589">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
+                                <span class="h-full w-[40%] rounded-3xl bg-amber-400 flex"></span>
+                            </p>
+                            <p class="font-medium text-lg text-black mr-0.5">
+                                {% if four %}
+                                    {{ four }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <p class="font-medium text-lg text-black mr-0.5">3</p>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12042_8589)">
+                                    <path
+                                            d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_12042_8589">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
+                                <span class="h-full w-[20%] rounded-3xl bg-amber-400 flex"></span>
+                            </p>
+                            <p class="font-medium text-lg text-black mr-0.5">
+                                {% if three %}
+                                    {{ three }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <p class="font-medium text-lg text-black mr-0.5">2</p>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12042_8589)">
+                                    <path
+                                            d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_12042_8589">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
+                                <span class="h-full w-[16%] rounded-3xl bg-amber-400 flex"></span>
+                            </p>
+                            <p class="font-medium text-lg text-black mr-0.5">
+                                {% if two %}
+                                    {{ two }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <p class="font-medium text-lg text-black mr-0.5">1</p>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12042_8589)">
+                                    <path
+                                            d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_12042_8589">
+                                        <rect width="20" height="20" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
+                                <span class="h-full w-[8%] rounded-3xl bg-amber-400 flex"></span>
+                            </p>
+                            <p class="font-medium text-lg py-[1px] text-black mr-0.5">
+                                {% if one %}
+                                    {{ one }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-amber-50 rounded-3xl flex items-center justify-center flex-col">
+                        <h2 class="font-manrope font-bold text-5xl text-amber-400 mb-6">
+                            {% if avg_rating.average_rating is not None %}
+                                {{ avg_rating.average_rating|floatformat:1 }}
+                            {% else %}
+                                0.0
+                            {% endif %}
+                        </h2>
+                        <div class="flex items-center justify-center gap-2 sm:gap-6 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
+                                 fill="none">
+                                <g clip-path="url(#clip0_13624_2608)">
+                                    <path
+                                            d="M21.1033 2.9166C21.4701 2.17335 22.5299 2.17335 22.8967 2.9166L28.233 13.729C28.3786 14.0241 28.6602 14.2287 28.9859 14.276L40.9181 16.0099C41.7383 16.1291 42.0658 17.137 41.4723 17.7156L32.8381 26.1318C32.6024 26.3616 32.4949 26.6926 32.5505 27.017L34.5888 38.9009C34.7289 39.7178 33.8714 40.3408 33.1378 39.9551L22.4653 34.3443C22.174 34.1911 21.826 34.1911 21.5347 34.3443L10.8622 39.9551C10.1286 40.3408 9.27114 39.7178 9.41125 38.9009L11.4495 27.017C11.5051 26.6926 11.3976 26.3616 11.1619 26.1318L2.52771 17.7156C1.93419 17.137 2.2617 16.1291 3.08192 16.0099L15.0141 14.276C15.3398 14.2287 15.6214 14.0241 15.767 13.729L21.1033 2.9166Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_13624_2608">
+                                        <rect width="44" height="44" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
+                                 fill="none">
+                                <g clip-path="url(#clip0_13624_2608)">
+                                    <path
+                                            d="M21.1033 2.9166C21.4701 2.17335 22.5299 2.17335 22.8967 2.9166L28.233 13.729C28.3786 14.0241 28.6602 14.2287 28.9859 14.276L40.9181 16.0099C41.7383 16.1291 42.0658 17.137 41.4723 17.7156L32.8381 26.1318C32.6024 26.3616 32.4949 26.6926 32.5505 27.017L34.5888 38.9009C34.7289 39.7178 33.8714 40.3408 33.1378 39.9551L22.4653 34.3443C22.174 34.1911 21.826 34.1911 21.5347 34.3443L10.8622 39.9551C10.1286 40.3408 9.27114 39.7178 9.41125 38.9009L11.4495 27.017C11.5051 26.6926 11.3976 26.3616 11.1619 26.1318L2.52771 17.7156C1.93419 17.137 2.2617 16.1291 3.08192 16.0099L15.0141 14.276C15.3398 14.2287 15.6214 14.0241 15.767 13.729L21.1033 2.9166Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_13624_2608">
+                                        <rect width="44" height="44" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
+                                 fill="none">
+                                <g clip-path="url(#clip0_13624_2608)">
+                                    <path
+                                            d="M21.1033 2.9166C21.4701 2.17335 22.5299 2.17335 22.8967 2.9166L28.233 13.729C28.3786 14.0241 28.6602 14.2287 28.9859 14.276L40.9181 16.0099C41.7383 16.1291 42.0658 17.137 41.4723 17.7156L32.8381 26.1318C32.6024 26.3616 32.4949 26.6926 32.5505 27.017L34.5888 38.9009C34.7289 39.7178 33.8714 40.3408 33.1378 39.9551L22.4653 34.3443C22.174 34.1911 21.826 34.1911 21.5347 34.3443L10.8622 39.9551C10.1286 40.3408 9.27114 39.7178 9.41125 38.9009L11.4495 27.017C11.5051 26.6926 11.3976 26.3616 11.1619 26.1318L2.52771 17.7156C1.93419 17.137 2.2617 16.1291 3.08192 16.0099L15.0141 14.276C15.3398 14.2287 15.6214 14.0241 15.767 13.729L21.1033 2.9166Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_13624_2608">
+                                        <rect width="44" height="44" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
+                                 fill="none">
+                                <g clip-path="url(#clip0_13624_2608)">
+                                    <path
+                                            d="M21.1033 2.9166C21.4701 2.17335 22.5299 2.17335 22.8967 2.9166L28.233 13.729C28.3786 14.0241 28.6602 14.2287 28.9859 14.276L40.9181 16.0099C41.7383 16.1291 42.0658 17.137 41.4723 17.7156L32.8381 26.1318C32.6024 26.3616 32.4949 26.6926 32.5505 27.017L34.5888 38.9009C34.7289 39.7178 33.8714 40.3408 33.1378 39.9551L22.4653 34.3443C22.174 34.1911 21.826 34.1911 21.5347 34.3443L10.8622 39.9551C10.1286 40.3408 9.27114 39.7178 9.41125 38.9009L11.4495 27.017C11.5051 26.6926 11.3976 26.3616 11.1619 26.1318L2.52771 17.7156C1.93419 17.137 2.2617 16.1291 3.08192 16.0099L15.0141 14.276C15.3398 14.2287 15.6214 14.0241 15.767 13.729L21.1033 2.9166Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_13624_2608">
+                                        <rect width="44" height="44" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
+                                 fill="none">
+                                <g clip-path="url(#clip0_13624_2608)">
+                                    <path
+                                            d="M21.1033 2.9166C21.4701 2.17335 22.5299 2.17335 22.8967 2.9166L28.233 13.729C28.3786 14.0241 28.6602 14.2287 28.9859 14.276L40.9181 16.0099C41.7383 16.1291 42.0658 17.137 41.4723 17.7156L32.8381 26.1318C32.6024 26.3616 32.4949 26.6926 32.5505 27.017L34.5888 38.9009C34.7289 39.7178 33.8714 40.3408 33.1378 39.9551L22.4653 34.3443C22.174 34.1911 21.826 34.1911 21.5347 34.3443L10.8622 39.9551C10.1286 40.3408 9.27114 39.7178 9.41125 38.9009L11.4495 27.017C11.5051 26.6926 11.3976 26.3616 11.1619 26.1318L2.52771 17.7156C1.93419 17.137 2.2617 16.1291 3.08192 16.0099L15.0141 14.276C15.3398 14.2287 15.6214 14.0241 15.767 13.729L21.1033 2.9166Z"
+                                            fill="#FBBF24"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_13624_2608">
+                                        <rect width="44" height="44" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <p class="font-medium text-xl leading-8 text-gray-900 text-center">
+                            {% if data %}
+                                {{ data }}
+                            {% else %}
+                                No
+                            {% endif %} Review
+                        </p>
+                    </div>
+                </div>
+
+
+                <section class="text-gray-600 body-font relative bg-indigo-50">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="px-5 py-8 mx-auto flex">
+                            <div class="lg:w-2/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+                                <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>
+                                <div class="relative mb-4">
+                                    <!-- Custom Rating Input -->
+                                    <div class="flex flex-row-reverse justify-end items-center">
+                                        {% for i in "54321" %}
+                                            <input id="rating-{{ forloop.counter }}" type="radio"
+                                                   class="pt-4 peer -ms-5 size-5 bg-transparent border-0 text-transparent cursor-pointer appearance-none checked:bg-none focus:bg-none focus:ring-0 focus:ring-offset-0"
+                                                   name="{{ form.rating.name }}" value="{{ forloop.counter }}"
+                                                   {% if form.rating.value == forloop.counter %}checked{% endif %}>
+                                            <label for="rating-{{ forloop.counter }}"
+                                                   class="peer-checked:text-yellow-400 text-gray-300 pointer-events-none dark:peer-checked:text-yellow-600 dark:text-neutral-600">
+                                                <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg"
+                                                     width="16"
+                                                     height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                    <!-- End Custom Rating Input -->
+                                </div>
+
+                                <div class="relative mb-4">
+                                    <label for="title" class="leading-7 text-sm text-gray-600">Title</label>
+                                    <input type="text" id="title" name="title"
+                                           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                </div>
+
+
+                                <div class="relative mb-4">
+                                    <label for="message" class="leading-7 text-sm text-gray-600">Describe your
+                                        experience</label>
+                                    {{ form.comment }}
+                                </div>
+                                <button type="submit"
+                                        class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                                    Submit Review
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                {% if all_review %}
+                    {% for eachReview in all_review %}
+                        <div class="pt-11 pb-8 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
+                            {#                            <div class="flex items-center gap-3 mb-4">#}
+                            {#                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"#}
+                            {#                                     fill="none">#}
+                            {#                                    <g clip-path="url(#clip0_13624_2892)">#}
+                            {#                                        <path#}
+                            {#                                                d="M14.1033 2.56698C14.4701 1.82374 15.5299 1.82374 15.8967 2.56699L19.1757 9.21093C19.3214 9.50607 19.6029 9.71064 19.9287 9.75797L27.2607 10.8234C28.0809 10.9426 28.4084 11.9505 27.8149 12.5291L22.5094 17.7007C22.2737 17.9304 22.1662 18.2614 22.2218 18.5858L23.4743 25.8882C23.6144 26.7051 22.7569 27.3281 22.0233 26.9424L15.4653 23.4946C15.174 23.3415 14.826 23.3415 14.5347 23.4946L7.9767 26.9424C7.24307 27.3281 6.38563 26.7051 6.52574 25.8882L7.7782 18.5858C7.83384 18.2614 7.72629 17.9304 7.49061 17.7007L2.1851 12.5291C1.59159 11.9505 1.91909 10.9426 2.73931 10.8234L10.0713 9.75797C10.3971 9.71064 10.6786 9.50607 10.8243 9.21093L14.1033 2.56698Z"#}
+                            {#                                                fill="#FBBF24"/>#}
+                            {#                                    </g>#}
+                            {#                                    <defs>#}
+                            {#                                        <clipPath id="clip0_13624_2892">#}
+                            {#                                            <rect width="30" height="30" fill="white"/>#}
+                            {#                                        </clipPath>#}
+                            {#                                    </defs>#}
+                            {#                                </svg>#}
+                            {#                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"#}
+                            {#                                     fill="none">#}
+                            {#                                    <g clip-path="url(#clip0_13624_2892)">#}
+                            {#                                        <path#}
+                            {#                                                d="M14.1033 2.56698C14.4701 1.82374 15.5299 1.82374 15.8967 2.56699L19.1757 9.21093C19.3214 9.50607 19.6029 9.71064 19.9287 9.75797L27.2607 10.8234C28.0809 10.9426 28.4084 11.9505 27.8149 12.5291L22.5094 17.7007C22.2737 17.9304 22.1662 18.2614 22.2218 18.5858L23.4743 25.8882C23.6144 26.7051 22.7569 27.3281 22.0233 26.9424L15.4653 23.4946C15.174 23.3415 14.826 23.3415 14.5347 23.4946L7.9767 26.9424C7.24307 27.3281 6.38563 26.7051 6.52574 25.8882L7.7782 18.5858C7.83384 18.2614 7.72629 17.9304 7.49061 17.7007L2.1851 12.5291C1.59159 11.9505 1.91909 10.9426 2.73931 10.8234L10.0713 9.75797C10.3971 9.71064 10.6786 9.50607 10.8243 9.21093L14.1033 2.56698Z"#}
+                            {#                                                fill="#FBBF24"/>#}
+                            {#                                    </g>#}
+                            {#                                    <defs>#}
+                            {#                                        <clipPath id="clip0_13624_2892">#}
+                            {#                                            <rect width="30" height="30" fill="white"/>#}
+                            {#                                        </clipPath>#}
+                            {#                                    </defs>#}
+                            {#                                </svg>#}
+                            {#                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"#}
+                            {#                                     fill="none">#}
+                            {#                                    <g clip-path="url(#clip0_13624_2892)">#}
+                            {#                                        <path#}
+                            {#                                                d="M14.1033 2.56698C14.4701 1.82374 15.5299 1.82374 15.8967 2.56699L19.1757 9.21093C19.3214 9.50607 19.6029 9.71064 19.9287 9.75797L27.2607 10.8234C28.0809 10.9426 28.4084 11.9505 27.8149 12.5291L22.5094 17.7007C22.2737 17.9304 22.1662 18.2614 22.2218 18.5858L23.4743 25.8882C23.6144 26.7051 22.7569 27.3281 22.0233 26.9424L15.4653 23.4946C15.174 23.3415 14.826 23.3415 14.5347 23.4946L7.9767 26.9424C7.24307 27.3281 6.38563 26.7051 6.52574 25.8882L7.7782 18.5858C7.83384 18.2614 7.72629 17.9304 7.49061 17.7007L2.1851 12.5291C1.59159 11.9505 1.91909 10.9426 2.73931 10.8234L10.0713 9.75797C10.3971 9.71064 10.6786 9.50607 10.8243 9.21093L14.1033 2.56698Z"#}
+                            {#                                                fill="#FBBF24"/>#}
+                            {#                                    </g>#}
+                            {#                                    <defs>#}
+                            {#                                        <clipPath id="clip0_13624_2892">#}
+                            {#                                            <rect width="30" height="30" fill="white"/>#}
+                            {#                                        </clipPath>#}
+                            {#                                    </defs>#}
+                            {#                                </svg>#}
+                            {#                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"#}
+                            {#                                     fill="none">#}
+                            {#                                    <g clip-path="url(#clip0_13624_2892)">#}
+                            {#                                        <path#}
+                            {#                                                d="M14.1033 2.56698C14.4701 1.82374 15.5299 1.82374 15.8967 2.56699L19.1757 9.21093C19.3214 9.50607 19.6029 9.71064 19.9287 9.75797L27.2607 10.8234C28.0809 10.9426 28.4084 11.9505 27.8149 12.5291L22.5094 17.7007C22.2737 17.9304 22.1662 18.2614 22.2218 18.5858L23.4743 25.8882C23.6144 26.7051 22.7569 27.3281 22.0233 26.9424L15.4653 23.4946C15.174 23.3415 14.826 23.3415 14.5347 23.4946L7.9767 26.9424C7.24307 27.3281 6.38563 26.7051 6.52574 25.8882L7.7782 18.5858C7.83384 18.2614 7.72629 17.9304 7.49061 17.7007L2.1851 12.5291C1.59159 11.9505 1.91909 10.9426 2.73931 10.8234L10.0713 9.75797C10.3971 9.71064 10.6786 9.50607 10.8243 9.21093L14.1033 2.56698Z"#}
+                            {#                                                fill="#FBBF24"/>#}
+                            {#                                    </g>#}
+                            {#                                    <defs>#}
+                            {#                                        <clipPath id="clip0_13624_2892">#}
+                            {#                                            <rect width="30" height="30" fill="white"/>#}
+                            {#                                        </clipPath>#}
+                            {#                                    </defs>#}
+                            {#                                </svg>#}
+                            {#                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"#}
+                            {#                                     fill="none">#}
+                            {#                                    <g clip-path="url(#clip0_13624_2892)">#}
+                            {#                                        <path#}
+                            {#                                                d="M14.1033 2.56698C14.4701 1.82374 15.5299 1.82374 15.8967 2.56699L19.1757 9.21093C19.3214 9.50607 19.6029 9.71064 19.9287 9.75797L27.2607 10.8234C28.0809 10.9426 28.4084 11.9505 27.8149 12.5291L22.5094 17.7007C22.2737 17.9304 22.1662 18.2614 22.2218 18.5858L23.4743 25.8882C23.6144 26.7051 22.7569 27.3281 22.0233 26.9424L15.4653 23.4946C15.174 23.3415 14.826 23.3415 14.5347 23.4946L7.9767 26.9424C7.24307 27.3281 6.38563 26.7051 6.52574 25.8882L7.7782 18.5858C7.83384 18.2614 7.72629 17.9304 7.49061 17.7007L2.1851 12.5291C1.59159 11.9505 1.91909 10.9426 2.73931 10.8234L10.0713 9.75797C10.3971 9.71064 10.6786 9.50607 10.8243 9.21093L14.1033 2.56698Z"#}
+                            {#                                                fill="#FBBF24"/>#}
+                            {#                                    </g>#}
+                            {#                                    <defs>#}
+                            {#                                        <clipPath id="clip0_13624_2892">#}
+                            {#                                            <rect width="30" height="30" fill="white"/>#}
+                            {#                                        </clipPath>#}
+                            {#                                    </defs>#}
+                            {#                                </svg>#}
+                            {#                            </div>#}
+
+
+                            <div class="flex items-center gap-3 mb-4">
+                                {% with 5 as max_rating %}
+                                    {% for i in "12345" %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                             viewBox="0 0 30 30" fill="none">
+                                            <g clip-path="url(#clip0_13624_2892)">
+                                                <path
+                                                        d="M14.1033 2.56698C14.4701 1.82374 15.5299 1.82374 15.8967 2.56699L19.1757 9.21093C19.3214 9.50607 19.6029 9.71064 19.9287 9.75797L27.2607 10.8234C28.0809 10.9426 28.4084 11.9505 27.8149 12.5291L22.5094 17.7007C22.2737 17.9304 22.1662 18.2614 22.2218 18.5858L23.4743 25.8882C23.6144 26.7051 22.7569 27.3281 22.0233 26.9424L15.4653 23.4946C15.174 23.3415 14.826 23.3415 14.5347 23.4946L7.9767 26.9424C7.24307 27.3281 6.38563 26.7051 6.52574 25.8882L7.7782 18.5858C7.83384 18.2614 7.72629 17.9304 7.49061 17.7007L2.1851 12.5291C1.59159 11.9505 1.91909 10.9426 2.73931 10.8234L10.0713 9.75797C10.3971 9.71064 10.6786 9.50607 10.8243 9.21093L14.1033 2.56698Z"
+                                                        fill="{% if review.rating >= i|add:"0"|floatformat:0 %} #FBBF24 {% else %} #E5E7EB {% endif %}"/>
+                                                <!-- Change fill color based on rating -->
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_13624_2892">
+                                                    <rect width="30" height="30" fill="white"/>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    {% endfor %}
+                                {% endwith %}
+                            </div>
+
+
+
+
+
+                            <h3 class="font-manrope font-semibold text-xl sm:text-2xl leading-9 text-black mb-6">
+                                {{ eachReview.title }}
+                            </h3>
+                            <div class="flex sm:items-center flex-col min-[400px]:flex-row justify-between gap-5 mb-4">
+                                <div class="flex items-center gap-3">
+                                    <img src="{{ eachReview.user.profile.image.url }}" alt="John image"
+                                         class="w-8 h-8 rounded-full object-cover">
+                                    <h6 class="font-semibold text-lg leading-8 text-indigo-600 ">{{ eachReview.user.username }}</h6>
+                                </div>
+                                <p class="font-normal text-lg leading-8 text-gray-400">{{ eachReview.created_at|date:"F d , Y" }}</p>
+                            </div>
+                            <p class="font-normal text-lg leading-8 text-gray-400 max-xl:text-justify">{{ eachReview.comment }}</p>
+                        </div>
+
+                    {% endfor %}{% else %}
+                    <h2 class="font-manrope font-bold text-4xl text-black mb-8 text-center">No review</h2>
+                {% endif %}
+
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+

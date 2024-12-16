@@ -1,0 +1,240 @@
+{% extends 'project_manage/index.html' %}
+
+{% block content %}
+
+<form method="post" action="{% url 'add-purchase' project_id %}" class="text-gray-600 body-font">
+    {% csrf_token %}
+    <div class="container px-16 py-4 mx-auto">
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+                <label for="purchase_title" class="leading-7 text-sm text-gray-600">Purchase</label>
+                <input type="text" id="purchase_title" name="purchase_title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-30">
+                <label for="purchase_amount" class="leading-7 text-sm text-gray-600">Amount</label>
+                <input type="number" id="purchase_amount" name="purchase_amount" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-md">Add Purchase</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-20">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Purchase Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Cost
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ purchase.purchase_title }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ purchase.purchase_amount }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<form method="post" action="{% url 'add_salary' project_id %}" class="text-gray-600 body-font">
+    {% csrf_token %}
+    <div class="container px-16 py-4 mx-auto">
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+                <label for="salary_title" class="leading-7 text-sm text-gray-600">Employee Name</label>
+                <input type="text" id="salary_title" name="salary_title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-30">
+                <label for="salary_amount" class="leading-7 text-sm text-gray-600">Amount</label>
+                <input type="number" id="salary_amount" name="salary_amount" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-md">Add Purchase</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-20">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Employee Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Salary
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for salary in salaries %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ salary.salary_title }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ salary.salary_amount }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<form method="post" action="{% url 'add_labor_wage' project_id %}" class="text-gray-600 body-font">
+    {% csrf_token %}
+    <div class="container px-16 py-4 mx-auto">
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+                <label for="labor_wage_title" class="leading-7 text-sm text-gray-600">Labor Name</label>
+                <input type="text" id="labor_wage_title" name="labor_wage_title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-30">
+                <label for="labor_wage_amount" class="leading-7 text-sm text-gray-600">Amount</label>
+                <input type="number" id="labor_wage_amount" name="labor_wage_amount" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-md">Add Labor Wage</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-20">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Labor Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Wage
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for laborWage in laborWages %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ laborWage.labor_wage_title }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ laborWage.labor_wage_amount }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<form method="post" action="{% url 'add_other_labor_wage' project_id %}" class="text-gray-600 body-font">
+    {% csrf_token %}
+    <div class="container px-16 py-4 mx-auto">
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+                <label for="other_wage_title" class="leading-7 text-sm text-gray-600">Other Labor Name</label>
+                <input type="text" id="other_wage_title" name="other_wage_title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-30">
+                <label for="other_wage_amount" class="leading-7 text-sm text-gray-600">Wage</label>
+                <input type="number" id="other_wage_amount" name="other_wage_amount" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-md">Add Labor Wage</button>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-20">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Other Wage Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Wage
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for otherWagePayment in otherWagePayments %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ otherWagePayment.other_wage_title }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ otherWagePayment.other_wage_amount }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<form method="post" action="{% url 'add_transport_payment' project_id %}" class="text-gray-600 body-font">
+    {% csrf_token %}
+    <div class="container px-16 py-4 mx-auto">
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+                <label for="transport_title" class="leading-7 text-sm text-gray-600">Transport Title</label>
+                <input type="text" id="transport_title" name="transport_title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-30">
+                <label for="transport_amount" class="leading-7 text-sm text-gray-600">Cost</label>
+                <input type="number" id="transport_amount" name="transport_amount" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-md">Add Transport</button>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-20">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Transport Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Amount
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transportPayment in transportPayments %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ transportPayment.transport_title }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ transportPayment.transport_amount }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex justify-content-evenly align-center text-center w-full mb-20 bg-indigo-50">
+                <h1 class="font-bold text-2xl text-indigo-500 pt-2">Posted by:</h1>
+                <a href="{% url 'profile' job.posted_by.username %}" class="py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <img class="w-14 ml-12 h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                         src="{{ job.posted_by.profile.image.url }}" alt="Rounded avatar">
+                </a>
+            </div>
+            <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">{{ job.job_title }}</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base pt-4">{{ job.job_description }}</p>
+            </div>
+            <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+                <table class="table-auto w-full text-left whitespace-no-wrap">
+                    <tbody>
+                    <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                            Estimated Working Day
+                        </th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ job.working_day }}</th>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3">Working hours</td>
+                        <td class="px-4 py-3 text-lg text-gray-900">{{ job.working_hours }}</td>
+                    </tr>
+
+                    <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                            Location
+                        </th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ job.location }}</th>
+                    </tr>
+
+                    <tr>
+                        <td class="px-4 py-3">Experience (year)</td>
+                        <td class="px-4 py-3 text-lg text-gray-900">{{ job.experience_year }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            {% if job.posted_by != user %}
+                <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
+                    <a href="{% url 'apply-job' job.id %}" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                        Apply
+                    </a>
+                </div>
+            {% else %}
+                 <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
+                    <a href="{% url 'job-update' job.id %}" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                        Update Job
+                    </a>
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+{% endblock %}

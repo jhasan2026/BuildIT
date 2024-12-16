@@ -1,0 +1,170 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+<!-- component -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
+{#<script src="https://cdn.tailwindcss.com"></script>#}
+
+<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')</style>
+
+<div class="min-h-[60vh] bg-white  flex items-start justify-center px-5 pt-5 pb-8">
+    <div class="bg-slate-50 text-black-500 rounded shadow-xl pt-5 pb-8 px-5 w-full sm:w-2/3 md:w-1/2 lg:w-5/6" x-data="{cardOpen:false,cardData:cardData()}" x-init="$watch('cardOpen', value => value?(cardData.countUp($refs.total,0,{{ mortgage_post.price }},null,2),cardData.sessions.forEach((el,i) => cardData.countUp($refs[`device${i}`],0,cardData.sessions[i].c,null,1.6))):null);setTimeout(()=>{cardOpen=true},100)">
+        <div class="flex w-full">
+            <h3 class="text-lg font-semibold leading-tight flex-1">Total Installment</h3>
+            <div class="relative h-5 leading-none">
+                <button class="text-xl text-gray-900 hover:text-gray-500 h-6 focus:outline-none" @click.prevent="cardOpen=!cardOpen">
+                    <i class="mdi" :class="'mdi-chevron-'+(cardOpen?'up':'down')"></i>
+                </button>
+            </div>
+        </div>
+        <div class="relative overflow-hidden transition-all duration-500" x-ref="card" x-bind:style="`max-height:${cardOpen?$refs.card.scrollHeight:0}px; opacity:${cardOpen?1:0}`">
+            <div>
+                <div class="pb-4 lg:pb-6">
+                    <h4 class="text-2xl lg:text-3xl text-black font-semibold leading-tight inline-block" id="totalVal" data-value="{% widthratio mortgage_post.price 1 1 %}" x-ref="total">{% widthratio mortgage_post.price 1 1 %}</h4>
+                </div>
+                <div class="pb-4 lg:pb-6">
+                    <div class="overflow-hidden rounded-full h-3 bg-slate-50 flex transition-all duration-500" :class="cardOpen?'w-full':'w-0'">
+                        <template x-for="(item,index) in cardData.sessions">
+                            <div class="h-full" :class="`bg-${item.color}`" :style="`width:${item.size}%`"></div>
+                        </template>
+                    </div>
+                </div>
+                <div class="flex -mx-4">
+                    <template x-for="(item,index) in cardData.sessions">
+                        <div class="w-1/3 px-4" :class="{'border-l border-gray-700':index!==0}">
+                            <div class="text-sm">
+                                <span class="inline-block w-2 h-2 rounded-full mr-1 align-middle" :class="`bg-${item.color}`">&nbsp;</span>
+                                <span class="align-middle text-gray-500" x-text="item.label">&nbsp;</span>
+                            </div>
+                            <div class="font-medium text-lg text-black">
+                                <span :x-ref="`device${index}`">0</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="w-full flex items-center justify-center flex-col gap-12">
+     <div class="w-2/3 flex items-center justify-center gap-8">
+        <div class="relative mb-6 w-1/2">
+            <label for="first" class="sr-only">Labels range</label>
+            <input id="first" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($100)</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$500</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($1500)</span>
+        </div>
+         <div class="relative mb-6 w-1/2">
+            <label for="second" class="sr-only">Labels range</label>
+            <input id="second" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($100)</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$500</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($1500)</span>
+        </div>
+    </div>
+     <div class="w-2/3 flex items-center justify-center gap-8">
+        <div class="relative mb-6 w-1/2">
+            <label for="third" class="sr-only">Labels range</label>
+            <input id="third" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($100)</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$500</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($1500)</span>
+        </div>
+         <div class="relative mb-6 w-1/2">
+            <label for="forth" class="sr-only">Labels range</label>
+            <input id="forth" type="range" value="1000" min="100" max="1500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($100)</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$500</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-2/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$1000</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($1500)</span>
+        </div>
+    </div>
+    </div>
+
+
+    <div>
+        {% if mortgage_post.author != user %}
+            <div class="flex justify-center p-4">
+                <div class="relative inline-flex  group">
+                    <div
+                        class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+                    </div>
+                    <a href="{% url 'post-pay' object.id %}" title="Get quote now"
+                        class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                        role="button">Book Now
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+let cardData = function() {
+
+    const totalVal = document.getElementById('totalVal')
+
+    const valueTotal = Number(totalVal.getAttribute("data-value"))
+    console.log(valueTotal)
+
+
+    const first = document.getElementById('first');
+    const second = document.getElementById('second');
+    const third = document.getElementById('third');
+    const forth = document.getElementById('forth');
+
+
+
+
+
+
+    let x=0.4,y=0.3,z=0.2,l=0.1
+
+    return {
+        countUp: function(target,startVal,endVal,decimals,duration){
+            const countUp = new CountUp(target,startVal||0,endVal,decimals||0,duration||2,{prefix:"$"});
+            countUp.start();
+        },
+        sessions: [
+            {
+                "label": "Booking Installment",
+                "size": x*100,
+                "c": (valueTotal*x),
+                "color": "green-500",
+            },
+            {
+                "label": "Second Installment",
+                "size": y*100,
+                "c":valueTotal*y,
+                "color": "purple-400"
+            },
+            {
+                "label": "Third Installment",
+                "size": z*100,
+                "c":valueTotal*z,
+                "color": "red-300"
+            }
+            ,
+            {
+                "label": "Final Installment",
+                "size": l*100,
+                "c":valueTotal*l,
+                "color": "blue-200"
+            }
+            ,
+
+
+        ]
+    }
+}
+</script>
+
+{% endblock %}
+
+
+
+</body>
+</html>
